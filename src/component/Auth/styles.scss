@@ -1,0 +1,19 @@
+.authWrapper {
+    max-width: 600px;
+    display: block;
+    margin: auto;
+
+    h2 {
+        text-align: center;
+    }
+
+    .MuiCardActions-root {
+        padding: 16px;
+    }
+    .formStatus {
+        padding: 0px 16px;
+    }
+    a {
+        font-size: 0.75rem;
+    }
+}
