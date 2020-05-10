@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import {
     Card,
     CardContent,
@@ -7,9 +7,10 @@ import {
     TextField,
 } from '@material-ui/core'
 import './styles.scss'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { LoginFormValidations } from '../../utils/formValidations/loginFormValidations'
 import { useForm } from '../../utils/customHooks'
+import { UserContext } from '../Context'
 
 interface ILogin {
     email: string
@@ -19,6 +20,8 @@ const formValidations = LoginFormValidations()
 
 const Login: React.FunctionComponent = () => {
     const [formStatus, setFormStatus] = useState('')
+    const [currentUser, setCurrentUser] = useContext(UserContext)
+    const [redirectToDashboard, setRedirectToDashboard] = useState(false)
 
     // useForm for account settings form.
     const {
@@ -70,7 +73,14 @@ const Login: React.FunctionComponent = () => {
             .then((response) => {
                 if (response.status === 200) {
                     setFormStatus('Login successfully')
+                    localStorage.setItem('token', 'valid token')
+                    setCurrentUser({
+                        email: 'demo@email.com',
+                        fullName: 'John Doe',
+                        isLoggedIn: true,
+                    })
                     clearLoginForm()
+                    setRedirectToDashboard(true)
                 } else {
                     setFormStatus('Something went wrong. Please try again')
                 }
@@ -86,6 +96,10 @@ const Login: React.FunctionComponent = () => {
             email: '',
             password: '',
         })
+    }
+
+    if (redirectToDashboard && currentUser.isLoggedIn) {
+        return <Redirect to="/dashboard/" />
     }
 
     return (
