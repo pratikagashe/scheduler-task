@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
     Button,
     Grid,
@@ -12,13 +12,7 @@ import { Redirect } from 'react-router-dom'
 import { useForm } from '../../utils/customHooks'
 import { AddEventTypeFormValidations } from '../../utils/formValidations/addEventTypeFormValidations'
 import $ from 'jquery'
-
-const eventDuration = [
-    { id: 1, mins: '15' },
-    { id: 2, mins: '30' },
-    { id: 3, mins: '45' },
-    { id: 4, mins: '60' },
-]
+import { eventDuration } from '../../utils/constant'
 
 interface IDuration {
     id: number
@@ -27,15 +21,21 @@ interface IDuration {
 
 interface IAddEventType {
     eventName: string
-    eventDuration: string
+    eventDurationId: number
     customMins: string
 }
 
 const formValidations = AddEventTypeFormValidations()
 
-const AddEventType: React.FunctionComponent = () => {
+const AddEventType: React.FunctionComponent = (props: any) => {
     const [formStatus, setFormStatus] = useState('')
     const [redirectToEventType, setRedirectToEventType] = useState(false)
+
+    useEffect(() => {
+        if (props) {
+            editEventType(props.match.params.id)
+        }
+    }, [])
 
     const {
         values,
@@ -49,12 +49,16 @@ const AddEventType: React.FunctionComponent = () => {
     } = useForm({
         initialValues: {
             eventName: '',
-            eventMins: '',
+            eventDurationId: 0,
             customMins: '',
         },
         onSubmit({ values, e }: any) {
             if (allowSubmit) {
-                submitAddEventTypeForm()
+                if (props.match.params.id) {
+                    submitEditEventTypeForm(parseInt(props.match.params.id))
+                } else {
+                    submitAddEventTypeForm()
+                }
             }
         },
         validate(values: IAddEventType) {
@@ -64,7 +68,14 @@ const AddEventType: React.FunctionComponent = () => {
             Object.entries(values).forEach(([key, value]) => {
                 if (formValidations.has(`validate${key}`)) {
                     let result = null
-                    result = formValidations.get(`validate${key}`)(value)
+                    if (key === 'eventDurationId') {
+                        result = formValidations.get(`validate${key}`)(
+                            value,
+                            values.customMins
+                        )
+                    } else {
+                        result = formValidations.get(`validate${key}`)(value)
+                    }
                     formErrors[`${key}`] = result.flag
                     formErrors[`${key}Message`] = result.message
                     if (result.flag) {
@@ -78,6 +89,30 @@ const AddEventType: React.FunctionComponent = () => {
             return { formErrors, allowFormSubmit }
         },
     })
+
+    const editEventType = (eventId: number) => {
+        if (eventId) {
+            let cachedEventTypes: any = localStorage.getItem('eventTypes')
+            cachedEventTypes = JSON.parse(cachedEventTypes)
+            const eventTypeDetail = cachedEventTypes.filter(
+                (eventType: any) => {
+                    return eventType.id.toString() === eventId.toString()
+                }
+            )
+            setValues({
+                eventName: eventTypeDetail[0].name,
+                eventDurationId: eventTypeDetail[0].duration,
+                customMins: eventTypeDetail[0].customMins,
+            })
+            if (eventTypeDetail[0].customMins) {
+                $('#customDuration').addClass('active')
+            } else {
+                $('#duration' + eventTypeDetail[0].durationId).addClass(
+                    'active'
+                )
+            }
+        }
+    }
 
     const submitAddEventTypeForm = () => {
         fetch('http://www.mocky.io/v2/5eb79e9f3100000d00c8a1ec', {
@@ -95,13 +130,15 @@ const AddEventType: React.FunctionComponent = () => {
                         newEventType = {
                             id: cachedEventTypes.length + 1,
                             name: values.eventName,
-                            duration: values.eventMins,
+                            durationId: values.eventDurationId,
+                            customMins: values.customMins,
                         }
                     } else {
                         newEventType = {
                             id: 1,
                             name: values.eventName,
-                            duration: values.eventMins,
+                            durationId: values.eventDurationId,
+                            customMins: values.customMins,
                         }
                     }
                     cachedEventTypes.push(newEventType)
@@ -121,11 +158,44 @@ const AddEventType: React.FunctionComponent = () => {
             })
     }
 
+    const submitEditEventTypeForm = (eventId: number) => {
+        fetch('http://www.mocky.io/v2/5eb79e9f3100000d00c8a1ec', {
+            method: 'post',
+            body: JSON.stringify(values),
+        })
+            .then((response) => {
+                if (response.status === 200) {
+                    let cachedEventTypes: any = localStorage.getItem(
+                        'eventTypes'
+                    )
+                    cachedEventTypes = JSON.parse(cachedEventTypes)
+                    let updatedEventType = {
+                        id: eventId,
+                        name: values.eventName,
+                        durationId: values.eventDurationId,
+                        customMins: values.customMins,
+                    }
+                    cachedEventTypes[eventId - 1] = updatedEventType
+                    localStorage.setItem(
+                        'eventTypes',
+                        JSON.stringify(cachedEventTypes)
+                    )
+                    setFormStatus('Event edited successfully')
+                } else {
+                    setFormStatus('Something went wrong. Please try again')
+                }
+            })
+            .catch((error) => {
+                console.error(error)
+                setFormStatus('Something went wrong. Please try again')
+            })
+    }
+
     const clearAddEventTypeForm = () => {
         $('.duration').removeClass('active')
         setValues({
             eventName: '',
-            eventMins: '',
+            eventDurationId: 0,
             customMins: '',
         })
     }
@@ -135,7 +205,7 @@ const AddEventType: React.FunctionComponent = () => {
         $('#duration' + id).addClass('active')
         setValues({
             ...values,
-            eventMins: mins,
+            eventDurationId: id,
             customMins: '',
         })
     }
@@ -235,7 +305,7 @@ const AddEventType: React.FunctionComponent = () => {
                                             />
                                             <span>Custom mins</span>
                                         </div>
-                                        {errors.eventMins && (
+                                        {errors.eventDurationId && (
                                             <p className="errorText">
                                                 Please choose event duration
                                             </p>

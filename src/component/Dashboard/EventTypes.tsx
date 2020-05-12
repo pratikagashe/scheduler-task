@@ -1,30 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import { Button, Grid, Card, CardContent, CardActions } from '@material-ui/core'
+import { dummyEventTypes, eventDuration } from '../../utils/constant'
 import './eventTypes.scss'
-
-const dummyEventTypes = [
-    {
-        id: 1,
-        name: 'Demo call',
-        duration: '30 mins',
-    },
-    {
-        id: 2,
-        name: 'Technical call',
-        duration: '60 mins',
-    },
-    {
-        id: 3,
-        name: 'Account review',
-        duration: '30 mins',
-    },
-]
 
 interface IEventType {
     id: number
     name: string
-    duration: string
+    durationId: number
+    customMins: string
 }
 
 const EventTypes: React.FunctionComponent = () => {
@@ -73,29 +57,46 @@ const EventTypes: React.FunctionComponent = () => {
             >
                 {eventTypes &&
                     eventTypes.length > 0 &&
-                    eventTypes.map((event: IEventType) => (
-                        <Grid
-                            item
-                            lg={4}
-                            md={4}
-                            sm={6}
-                            xs={12}
-                            key={`event${event.id}`}
-                            className="eventTypeContainer"
-                        >
-                            <Card variant="elevation" elevation={3}>
-                                <CardContent>
-                                    <div className="eventTypeHeader">
-                                        <h3>{event.name}</h3>
-                                        <p>{event.duration}</p>
-                                    </div>
-                                </CardContent>
-                                <CardActions>
-                                    <Link to="/dashboard/">Edit</Link>
-                                </CardActions>
-                            </Card>
-                        </Grid>
-                    ))}
+                    eventTypes.map((event: IEventType) => {
+                        let minutes
+                        if (event.customMins) {
+                            minutes = event.customMins
+                        } else if (
+                            eventDuration &&
+                            eventDuration[event.durationId - 1]
+                        ) {
+                            minutes = eventDuration[event.durationId - 1].mins
+                                ? eventDuration[event.durationId - 1].mins
+                                : '00'
+                        }
+                        return (
+                            <Grid
+                                item
+                                lg={4}
+                                md={4}
+                                sm={6}
+                                xs={12}
+                                key={`event${event.id}`}
+                                className="eventTypeContainer"
+                            >
+                                <Card variant="elevation" elevation={3}>
+                                    <CardContent>
+                                        <div className="eventTypeHeader">
+                                            <h3>{event.name}</h3>
+                                            <p>{`${minutes} mins`}</p>
+                                        </div>
+                                    </CardContent>
+                                    <CardActions>
+                                        <Link
+                                            to={`/edit-event-type/${event.id}/`}
+                                        >
+                                            Edit
+                                        </Link>
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+                        )
+                    })}
             </Grid>
         </div>
     )

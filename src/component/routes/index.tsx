@@ -48,11 +48,18 @@ const AppRoutes: React.FunctionComponent = () => {
                 />
                 <Route exact path="/dashboard/" component={Dashboard} />
                 {currentUser.isLoggedIn && (
-                    <Route
-                        exact
-                        path="/add-event-type/"
-                        component={AddEventType}
-                    />
+                    <>
+                        <Route
+                            exact
+                            path="/add-event-type/"
+                            component={AddEventType}
+                        />
+                        <Route
+                            exact
+                            path="/edit-event-type/:id"
+                            component={AddEventType}
+                        />
+                    </>
                 )}
             </Switch>
         </BrowserRouter>

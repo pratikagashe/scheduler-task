@@ -52,3 +52,31 @@ export const dummyScheduledEvents = [
         ],
     },
 ]
+
+export const dummyEventTypes = [
+    {
+        id: 1,
+        name: 'Demo call',
+        durationId: 2,
+        customMins: '',
+    },
+    {
+        id: 2,
+        name: 'Technical call',
+        durationId: 4,
+        customMins: '',
+    },
+    {
+        id: 3,
+        name: 'Account review',
+        durationId: 2,
+        customMins: '',
+    },
+]
+
+export const eventDuration = [
+    { id: 1, mins: '15' },
+    { id: 2, mins: '30' },
+    { id: 3, mins: '45' },
+    { id: 4, mins: '60' },
+]

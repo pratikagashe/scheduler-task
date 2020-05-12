@@ -34,7 +34,7 @@ export const useForm = ({ initialValues, onSubmit, validate }: any): any => {
             setValues({
                 ...values,
                 [name]: value,
-                eventMins: value + ' mins',
+                eventDurationId: 0,
             })
         } else {
             setValues({

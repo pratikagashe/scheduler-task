@@ -80,12 +80,12 @@ export const validateEventName = (input: string) => {
     return result
 }
 
-export const validateEventMins = (input: string) => {
+export const validateEventDurationId = (input: number, customMins: string) => {
     let result = {
         flag: false,
         message: '',
     }
-    if (!input) {
+    if (input === 0 && customMins === '') {
         result.message = 'Please choose or enter custom mins'
         result.flag = true
     }
