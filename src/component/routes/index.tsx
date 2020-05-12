@@ -6,7 +6,9 @@ import SignUp from '../Auth/SignUp'
 import Nav from '../Header/Nav'
 import ForgetPassword from '../Auth/ForgetPassword'
 import ResetPassword from '../Auth/ResetPassword'
+
 import Dashboard from '../Dashboard/index'
+import AddEventType from '../Dashboard/AddEventType'
 import { UserContext } from '../Context'
 
 const AppRoutes: React.FunctionComponent = () => {
@@ -46,7 +48,11 @@ const AppRoutes: React.FunctionComponent = () => {
                 />
                 <Route exact path="/dashboard/" component={Dashboard} />
                 {currentUser.isLoggedIn && (
-                    <Route exact path="/new-event/" component={Dashboard} />
+                    <Route
+                        exact
+                        path="/add-event-type/"
+                        component={AddEventType}
+                    />
                 )}
             </Switch>
         </BrowserRouter>

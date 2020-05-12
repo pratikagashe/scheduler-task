@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import $ from 'jquery'
 
 export const useToggle = (initialValue: boolean): [boolean, Function] => {
     const [value, setValue] = useState(initialValue)
@@ -27,10 +28,20 @@ export const useForm = ({ initialValues, onSubmit, validate }: any): any => {
         const target = event.target
         const name = target.name
         const value = target.type === 'checkbox' ? target.checked : target.value
-        setValues({
-            ...values,
-            [name]: value,
-        })
+        if (name === 'customMins') {
+            $('.duration').removeClass('active')
+            $('#customDuration').addClass('active')
+            setValues({
+                ...values,
+                [name]: value,
+                eventMins: value + ' mins',
+            })
+        } else {
+            setValues({
+                ...values,
+                [name]: value,
+            })
+        }
     }
     const handleBlur = (event: any) => {
         const target = event.target

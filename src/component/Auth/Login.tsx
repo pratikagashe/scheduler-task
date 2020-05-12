@@ -23,7 +23,7 @@ const Login: React.FunctionComponent = () => {
     const [currentUser, setCurrentUser] = useContext(UserContext)
     const [redirectToDashboard, setRedirectToDashboard] = useState(false)
 
-    // useForm for account settings form.
+    // useForm for login form.
     const {
         values,
         touchedValues,

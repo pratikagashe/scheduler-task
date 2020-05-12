@@ -1,0 +1,93 @@
+@import '../../common-var.scss';
+
+.addEventTypes {
+    .header {
+        position: relative;
+        padding: 16px 64px;
+        margin-bottom: 32px;
+        border-bottom: 1px solid #ddd;
+
+        .title {
+            text-align: center;
+        }
+
+        .actionBtn {
+            position: absolute;
+            left: 0px;
+            top: 32px;
+        }
+    }
+
+    .addEventTypeContainer {
+        .MuiCard-root {
+            border: 1px solid #999999;
+        }
+
+        .MuiCardActions-root {
+            padding: 16px;
+            border-top: 1px solid #ddd;
+            justify-content: flex-end;
+        }
+
+        .formElement {
+            margin-bottom: 32px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            .duration {
+                padding: 13px 0px;
+                display: inline-block;
+                vertical-align: middle;
+                border: 1px solid #ddd;
+                width: 80px;
+                text-align: center;
+                box-sizing: border-box;
+                cursor: pointer;
+                @include transition;
+
+                p {
+                    color: #666;
+                    font-size: 1rem;
+                    margin: 0;
+                    line-height: 0.75rem;
+                }
+
+                span {
+                    color: #999999;
+                    font-size: 0.65rem;
+                }
+
+                &:hover,
+                &.active {
+                    border-color: #3f50b6;
+                }
+
+                &#customDuration {
+                    padding-top: 0px;
+                    margin-left: 16px;
+
+                    input {
+                        display: block;
+                        width: 32px;
+                        height: 16px;
+                        text-align: center;
+                        border: 0;
+                        border-bottom: 1px solid #ddd;
+                        color: #666;
+                        font-size: 0.75rem;
+                        margin: auto;
+                        outline: none;
+                        padding: 4px 0px;
+                        line-height: 0.75rem;
+                    }
+                    p {
+                        display: block;
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+}

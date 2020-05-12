@@ -23,7 +23,7 @@ export const validateFullName = (input: string) => {
         message: '',
     }
     if (!input) {
-        result.message = 'Please enter first name'
+        result.message = 'Please enter full name'
         result.flag = true
     }
     return result
@@ -63,6 +63,43 @@ export const validateConfirmPassword = (
         }
     } else {
         result.message = 'Please enter confirm password'
+        result.flag = true
+    }
+    return result
+}
+
+export const validateEventName = (input: string) => {
+    let result = {
+        flag: false,
+        message: '',
+    }
+    if (!input) {
+        result.message = 'Please enter event name'
+        result.flag = true
+    }
+    return result
+}
+
+export const validateEventMins = (input: string) => {
+    let result = {
+        flag: false,
+        message: '',
+    }
+    if (!input) {
+        result.message = 'Please choose or enter custom mins'
+        result.flag = true
+    }
+    return result
+}
+
+export const validateCustomMins = (input: string) => {
+    let result = {
+        flag: false,
+        message: '',
+    }
+    const mins = parseInt(input)
+    if (mins > 60) {
+        result.message = 'Please enter valid custom min. Numeric only. Below 60'
         result.flag = true
     }
     return result
