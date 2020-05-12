@@ -9,7 +9,7 @@ const Dashboard: React.FunctionComponent = () => {
     // eslint-disable-next-line
     const [currentUser, setCurrentUser] = useContext(UserContext)
     const [redirectToHome, setRedirectToHome] = useState(false)
-    const [value, setValue] = useState(0)
+    const [value, setValue] = useState(1)
 
     useEffect(() => {
         if (!currentUser.isLoggedIn) {

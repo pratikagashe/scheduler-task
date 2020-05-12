@@ -1,0 +1,44 @@
+.scheduledEvents {
+    .header {
+        position: relative;
+        padding: 32px 0px;
+
+        .eventCount {
+            text-align: right;
+            color: #999999;
+            font-size: 0.75rem;
+        }
+    }
+
+    .scheduledEventsContainer {
+        .MuiCard-root {
+            border: 1px solid #999999;
+        }
+        .perDaySchedule {
+            p {
+                margin: 0 4px;
+            }
+            .dateBlock,
+            .scheduleOfDay {
+                padding: 16px 32px;
+            }
+
+            .dateBlock {
+                background-color: #f0f0f0;
+                border-top: 1px solid #ddd;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .scheduleOfDay {
+                .scheduleTask {
+                    padding: 8px 0px;
+
+                    p {
+                        font-size: 0.85rem;
+                        padding-bottom: 4px;
+                    }
+                }
+            }
+        }
+    }
+}
