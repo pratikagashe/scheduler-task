@@ -59,7 +59,7 @@ const EnterDetails: React.FunctionComponent<IEnterDetails> = ({
     })
 
     const submitEventDetailsForm = () => {
-        fetch('http://www.mocky.io/v2/5eb79e9f3100000d00c8a1ec', {
+        fetch('https://www.mocky.io/v2/5eb79e9f3100000d00c8a1ec', {
             method: 'post',
             body: JSON.stringify(values),
         })

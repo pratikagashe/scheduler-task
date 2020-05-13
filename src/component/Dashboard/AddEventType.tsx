@@ -106,7 +106,7 @@ const AddEventType: React.FunctionComponent = (props: any) => {
     }
 
     const submitAddEventTypeForm = () => {
-        fetch('http://www.mocky.io/v2/5eb79e9f3100000d00c8a1ec', {
+        fetch('https://www.mocky.io/v2/5eb79e9f3100000d00c8a1ec', {
             method: 'post',
             body: JSON.stringify(values),
         })
@@ -150,7 +150,7 @@ const AddEventType: React.FunctionComponent = (props: any) => {
     }
 
     const submitEditEventTypeForm = (eventId: number) => {
-        fetch('http://www.mocky.io/v2/5eb79e9f3100000d00c8a1ec', {
+        fetch('https://www.mocky.io/v2/5eb79e9f3100000d00c8a1ec', {
             method: 'post',
             body: JSON.stringify(values),
         })
