@@ -68,7 +68,11 @@ const Login: React.FunctionComponent = () => {
             body: JSON.stringify(values),
         })
             .then((response) => {
-                if (response.status === 200) {
+                if (
+                    response.status === 200 &&
+                    values.email === 'john@gmail.com' &&
+                    values.password === 'JohnD@123'
+                ) {
                     setFormStatus('Login successfully')
                     localStorage.setItem('token', 'valid token')
                     setCurrentUser({
@@ -79,7 +83,7 @@ const Login: React.FunctionComponent = () => {
                     clearLoginForm()
                     setRedirectToDashboard(true)
                 } else {
-                    setFormStatus('Something went wrong. Please try again')
+                    setFormStatus('Please enter valid credentials')
                 }
             })
             .catch((error) => {

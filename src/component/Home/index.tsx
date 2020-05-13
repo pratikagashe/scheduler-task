@@ -8,15 +8,10 @@ const Home: React.FunctionComponent = () => {
     const [redirectToDashboard, setRedirectToDashboard] = useState(false)
 
     useEffect(() => {
-        let inEffect = true
-        if (inEffect) {
-            if (!currentUser.isLoggedIn) {
-                setRedirectToDashboard(true)
-            }
-            inEffect = false
+        if (!currentUser.isLoggedIn) {
+            setRedirectToDashboard(true)
         }
-        // eslint-disable-next-line
-    }, [])
+    }, [currentUser])
 
     if (redirectToDashboard && currentUser.isLoggedIn) {
         return <Redirect to="/dashboard/" />
