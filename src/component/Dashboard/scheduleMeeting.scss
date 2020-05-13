@@ -1,0 +1,106 @@
+.scheduleMeeting {
+    .header {
+        padding-top: 32px;
+        margin: 32px auto;
+        max-width: 300px;
+        display: block;
+        text-align: center;
+        color: #999999;
+    }
+
+    .scheduleMeetingContainer {
+        padding-bottom: 48px;
+        margin-bottom: 60px;
+
+        .scheduleMeetingType {
+            max-width: 500px;
+            display: flex;
+            margin: auto;
+            padding: 32px;
+            border-top: 1px solid #ddd;
+            align-items: center;
+
+            p {
+                flex: 1;
+                font-weight: 800;
+                font-size: 1.25rem;
+            }
+        }
+
+        .paddingWrapper {
+            padding: 40px;
+        }
+
+        .meetingTypeDetails {
+            p {
+                margin: 0;
+                color: #666666;
+            }
+
+            h3 {
+                margin: 12px 0;
+                font-size: 1.5rem;
+            }
+
+            label {
+                display: flex;
+                align-items: center;
+                margin-bottom: 8px;
+
+                span {
+                    padding-left: 8px;
+                }
+
+                &.greenText {
+                    align-items: flex-start;
+                }
+            }
+        }
+
+        .dateTimeSelection {
+            display: flex;
+            margin-bottom: 40px;
+            justify-content: space-around;
+
+            .react-datepicker {
+                border: 0px;
+
+                .react-datepicker__header {
+                    background-color: transparent;
+                }
+
+                .react-datepicker__time-list-item {
+                    border: 1px solid #3f50b6;
+                    margin: 8px 0px;
+                    border-radius: 4px;
+                    height: auto !important;
+                    padding: 12px !important;
+
+                    &.react-datepicker__time-list-item--selected {
+                        background-color: #3f50b6;
+                    }
+                }
+            }
+
+            .react-datepicker__time-container {
+                width: 120px;
+
+                .react-datepicker__time-box {
+                    width: 120px;
+                }
+
+                .react-datepicker__time
+                    .react-datepicker__time-box
+                    ul.react-datepicker__time-list {
+                    height: 400px;
+                }
+            }
+        }
+
+        .enterDetails {
+            form .MuiFormControl-root:last-child {
+                margin-bottom: 1rem !important;
+            }
+        }
+    }
+}

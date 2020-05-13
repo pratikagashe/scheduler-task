@@ -3,20 +3,19 @@ import { Link, Redirect } from 'react-router-dom'
 import { Button, Grid, Card, CardContent, CardActions } from '@material-ui/core'
 import { dummyEventTypes, eventDuration } from '../../utils/constant'
 import './eventTypes.scss'
-
-interface IEventType {
-    id: number
-    name: string
-    durationId: number
-    customMins: string
-}
+import { IEventType } from '../../utils/interface'
 
 const EventTypes: React.FunctionComponent = () => {
     const [eventTypes, setEventTypes] = useState<Array<IEventType> | null>()
     const [redirectToAddEventType, setRedirectToAddEventType] = useState(false)
 
     useEffect(() => {
-        getEventTypes()
+        let inEffect = true
+        if (inEffect) {
+            getEventTypes()
+            inEffect = false
+        }
+        // eslint-disable-next-line
     }, [])
 
     const getEventTypes = () => {
@@ -38,7 +37,9 @@ const EventTypes: React.FunctionComponent = () => {
             <div className="header">
                 <div className="title">
                     <h4>My Link</h4>
-                    <Link to="/dashboard/">booking.com/jonh-doe-booking</Link>
+                    <Link to="/schedule-a-meeting/">
+                        booking.com/jonh-doe-booking
+                    </Link>
                 </div>
                 <div className="actionBtn">
                     <Button

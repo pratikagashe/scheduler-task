@@ -29,6 +29,30 @@ export const validateFullName = (input: string) => {
     return result
 }
 
+export const validateFirstName = (input: string) => {
+    let result = {
+        flag: false,
+        message: '',
+    }
+    if (!input) {
+        result.message = 'Please enter first name'
+        result.flag = true
+    }
+    return result
+}
+
+export const validateLastName = (input: string) => {
+    let result = {
+        flag: false,
+        message: '',
+    }
+    if (!input) {
+        result.message = 'Please enter last name'
+        result.flag = true
+    }
+    return result
+}
+
 export const validatePassword = (input: string) => {
     let result = {
         flag: false,

@@ -67,3 +67,28 @@ const formatHours = (hours: number, mins?: number): string => {
         return formatNumber(adjHours) + ':00' + amPm
     }
 }
+
+export const getTaskDateTime = (
+    selectedDate: Date | string,
+    selectedTime: Date | string,
+    min: number
+) => {
+    const td = new Date(selectedDate)
+    const date = td.getDate()
+    const month = td.getMonth()
+    const fullYear = td.getFullYear()
+
+    const sd = new Date(selectedTime)
+    const hours = sd.getHours()
+    const mins = sd.getMinutes()
+
+    const startTime = new Date(fullYear, month, date, hours, mins)
+    const sTime = startTime.getTime()
+    const eTime = sTime + min * 60 * 1000
+    const endTime = new Date(eTime)
+
+    return {
+        startTime: startTime,
+        endTime: endTime,
+    }
+}

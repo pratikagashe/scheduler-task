@@ -11,11 +11,8 @@ import { Link, Redirect } from 'react-router-dom'
 import { LoginFormValidations } from '../../utils/formValidations/loginFormValidations'
 import { useForm } from '../../utils/customHooks'
 import { UserContext } from '../Context'
+import { ILogin } from '../../utils/interface'
 
-interface ILogin {
-    email: string
-    password: string
-}
 const formValidations = LoginFormValidations()
 
 const Login: React.FunctionComponent = () => {

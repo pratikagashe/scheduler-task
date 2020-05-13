@@ -10,10 +10,7 @@ import './styles.scss'
 import { Link } from 'react-router-dom'
 import { ForgetPasswordFormValidations } from '../../utils/formValidations/forgetPasswordFormValidations'
 import { useForm } from '../../utils/customHooks'
-
-interface IForgetPassword {
-    email: string
-}
+import { IForgetPassword } from '../../utils/interface'
 const formValidations = ForgetPasswordFormValidations()
 
 const ForgetPassword: React.FunctionComponent = () => {

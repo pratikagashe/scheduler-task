@@ -12,10 +12,15 @@ const Dashboard: React.FunctionComponent = () => {
     const [value, setValue] = useState(0)
 
     useEffect(() => {
-        if (!currentUser.isLoggedIn) {
-            setRedirectToHome(true)
+        let inEffect = true
+        if (inEffect) {
+            if (!currentUser.isLoggedIn) {
+                setRedirectToHome(true)
+            }
+            inEffect = false
         }
-    }, [currentUser])
+        // eslint-disable-next-line
+    }, [])
 
     const handleTabChange = (
         event: React.ChangeEvent<{}>,

@@ -10,13 +10,8 @@ import './styles.scss'
 import { Link } from 'react-router-dom'
 import { ResetPasswordFormValidations } from '../../utils/formValidations/resetPasswordFormValidations'
 import { useForm } from '../../utils/customHooks'
+import { IResetPassword } from '../../utils/interface'
 
-interface ISignUp {
-    email: string
-    fullName: string
-    password: string
-    confirmPassword: string
-}
 const formValidations = ResetPasswordFormValidations()
 
 const ResetPassword: React.FunctionComponent = () => {
@@ -35,7 +30,6 @@ const ResetPassword: React.FunctionComponent = () => {
     } = useForm({
         initialValues: {
             email: '',
-            fullName: '',
             password: '',
             confirmPassword: '',
         },
@@ -44,7 +38,7 @@ const ResetPassword: React.FunctionComponent = () => {
                 submitSignUpForm()
             }
         },
-        validate(values: ISignUp) {
+        validate(values: IResetPassword) {
             const formErrors: any = {}
             let errorArray = []
             let allowFormSubmit = false
@@ -81,7 +75,7 @@ const ResetPassword: React.FunctionComponent = () => {
             .then((response) => {
                 if (response.status === 200) {
                     setFormStatus('Password changed successfully')
-                    clearSignUpForm()
+                    clearResetPasswordForm()
                 } else {
                     setFormStatus('Something went wrong. Please try again')
                 }
@@ -92,10 +86,9 @@ const ResetPassword: React.FunctionComponent = () => {
             })
     }
 
-    const clearSignUpForm = () => {
+    const clearResetPasswordForm = () => {
         setValues({
             email: '',
-            fullName: '',
             password: '',
             confirmPassword: '',
         })

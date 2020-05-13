@@ -10,13 +10,8 @@ import './styles.scss'
 import { Link } from 'react-router-dom'
 import { SignUpFormValidations } from '../../utils/formValidations/signUpFormValidations'
 import { useForm } from '../../utils/customHooks'
+import { ISignUp } from '../../utils/interface'
 
-interface ISignUp {
-    email: string
-    fullName: string
-    password: string
-    confirmPassword: string
-}
 const formValidations = SignUpFormValidations()
 
 const SignUp: React.FunctionComponent = () => {

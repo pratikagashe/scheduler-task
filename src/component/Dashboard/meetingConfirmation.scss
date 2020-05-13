@@ -1,0 +1,38 @@
+.meetingConfirmation {
+    .header {
+        padding-top: 32px;
+        margin: 32px auto;
+        max-width: 300px;
+        display: block;
+        text-align: center;
+        color: #999999;
+    }
+
+    .meetingConfirmationContainer {
+        padding-bottom: 48px;
+        margin-bottom: 60px;
+
+        .meetingConfirmationBlock {
+            max-width: 500px;
+            margin: auto;
+            padding: 32px;
+            border-top: 1px solid #ddd;
+            align-items: center;
+
+            p {
+                font-weight: 800;
+                font-size: 1.25rem;
+                margin-top: 0px;
+            }
+
+            label {
+                display: flex;
+                align-items: center;
+
+                span {
+                    padding-left: 28px;
+                }
+            }
+        }
+    }
+}

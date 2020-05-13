@@ -4,6 +4,7 @@ import './scheduledEvents.scss'
 import { dummyScheduledEvents } from '../../utils/constant'
 import { IScheduledEventList, ITaskList } from '../../utils/interface'
 import { formatDate, formatTime } from '../../utils/common'
+import { Pagination } from '@material-ui/lab'
 
 const ScheduledEvents: React.FunctionComponent = () => {
     const [value, setValue] = useState(0)
@@ -85,7 +86,7 @@ const ScheduledEvents: React.FunctionComponent = () => {
                                                                     sm={12}
                                                                     xs={12}
                                                                 >
-                                                                    <p>
+                                                                    <p className="bulletDesign">
                                                                         <strong>
                                                                             {formatTime(
                                                                                 task
@@ -139,6 +140,9 @@ const ScheduledEvents: React.FunctionComponent = () => {
                                     )
                                 )}
                         </Paper>
+                        <div className="pagination">
+                            <Pagination count={10} color="primary" />
+                        </div>
                     </Grid>
                 </Grid>
             </div>

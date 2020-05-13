@@ -13,17 +13,7 @@ import { useForm } from '../../utils/customHooks'
 import { AddEventTypeFormValidations } from '../../utils/formValidations/addEventTypeFormValidations'
 import $ from 'jquery'
 import { eventDuration } from '../../utils/constant'
-
-interface IDuration {
-    id: number
-    mins: string
-}
-
-interface IAddEventType {
-    eventName: string
-    eventDurationId: number
-    customMins: string
-}
+import { IAddEventType, IDuration } from '../../utils/interface'
 
 const formValidations = AddEventTypeFormValidations()
 
@@ -35,6 +25,7 @@ const AddEventType: React.FunctionComponent = (props: any) => {
         if (props) {
             editEventType(props.match.params.id)
         }
+        // eslint-disable-next-line
     }, [])
 
     const {

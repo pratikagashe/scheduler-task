@@ -10,6 +10,8 @@ import ResetPassword from '../Auth/ResetPassword'
 import Dashboard from '../Dashboard/index'
 import AddEventType from '../Dashboard/AddEventType'
 import { UserContext } from '../Context'
+import ScheduleMeeting from '../Dashboard/ScheduleMeeting'
+import MeetingConfirmation from '../Dashboard/MeetingConfirmation'
 
 const AppRoutes: React.FunctionComponent = () => {
     const [currentUser, setCurrentUser] = useContext(UserContext)
@@ -58,6 +60,16 @@ const AppRoutes: React.FunctionComponent = () => {
                             exact
                             path="/edit-event-type/:id"
                             component={AddEventType}
+                        />
+                        <Route
+                            exact
+                            path="/schedule-a-meeting/"
+                            component={ScheduleMeeting}
+                        />
+                        <Route
+                            exact
+                            path="/schedule-confirmed/"
+                            component={MeetingConfirmation}
                         />
                     </>
                 )}

@@ -1,14 +1,5 @@
 import React, { createContext, useState } from 'react'
-
-interface IProviderProps {
-    children: any
-}
-
-interface IUserDetails {
-    email: string
-    fullName: string
-    isLoggedIn: boolean
-}
+import { IUserDetails, IProviderProps } from '../../utils/interface'
 
 const userProfile = {
     email: '',

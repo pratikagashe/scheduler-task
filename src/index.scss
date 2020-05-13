@@ -13,6 +13,10 @@ code {
         monospace;
 }
 
+p {
+    line-height: 1.5rem;
+}
+
 a {
     text-decoration: none;
     color: #3f50b6;
@@ -69,4 +73,25 @@ form {
 .errorText {
     font-size: 0.75rem;
     color: #f44336;
+}
+
+.greenText {
+    color: rgb(32, 151, 32);
+}
+
+.bulletDesign {
+    position: relative;
+    padding-left: 48px;
+
+    &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 100%;
+        background-color: #3f50b6;
+        width: 24px;
+        height: 24px;
+    }
 }
