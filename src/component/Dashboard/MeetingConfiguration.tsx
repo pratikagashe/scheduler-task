@@ -44,9 +44,8 @@ const MeetingConfiguration: React.FunctionComponent<IMeetingConfiguration> = ({
 
     const enterDetails = () => {
         const today = new Date()
-        if (today > selectedTime) {
-            setFormError('Please choose valid time')
-        } else {
+
+        if (today < selectedTime || today < selectedDate) {
             setFormError('')
             const taskDateTime = getTaskDateTime(
                 selectedDate,
@@ -58,6 +57,8 @@ const MeetingConfiguration: React.FunctionComponent<IMeetingConfiguration> = ({
                 timing: taskDateTime,
             })
             setShowEnterDetails(true)
+        } else {
+            setFormError('Please choose valid time')
         }
     }
 
