@@ -37,7 +37,7 @@ const Login: React.FunctionComponent = () => {
         },
         onSubmit({ values, e }: any) {
             if (allowSubmit) {
-                submitSignUpForm()
+                submitLoginForm()
             }
         },
         validate(values: ILogin) {
@@ -62,7 +62,7 @@ const Login: React.FunctionComponent = () => {
         },
     })
 
-    const submitSignUpForm = () => {
+    const submitLoginForm = () => {
         fetch('http://www.mocky.io/v2/5eb79e9f3100000d00c8a1ec', {
             method: 'post',
             body: JSON.stringify(values),

@@ -33,7 +33,7 @@ const ForgetPassword: React.FunctionComponent = () => {
         },
         onSubmit({ values, e }: any) {
             if (allowSubmit) {
-                submitSignUpForm()
+                submitForgetPasswordForm()
             }
         },
         validate(values: IForgetPassword) {
@@ -58,7 +58,7 @@ const ForgetPassword: React.FunctionComponent = () => {
         },
     })
 
-    const submitSignUpForm = () => {
+    const submitForgetPasswordForm = () => {
         fetch('http://www.mocky.io/v2/5eb79e9f3100000d00c8a1ec', {
             method: 'post',
             body: JSON.stringify(values),
